@@ -19,14 +19,7 @@ public class Solution {
             }
             if (leftSum == rightSum)
             {
-                /**if (middle == nums.Length - 1)
-                {
-                    return 0;
-                }
-                else
-                {*/
-                    return middle;
-                //}
+                return middle;
             }
             middle++;
         }
