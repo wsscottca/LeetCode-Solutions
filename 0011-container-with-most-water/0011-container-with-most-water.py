@@ -6,7 +6,6 @@ class Solution:
             container = (right-left) * min(height[right], height[left])
             if (container > maxContainer):
                 maxContainer = container
-                print(maxContainer)
                 
             if (height[right] > height[left]):
                 left += 1
