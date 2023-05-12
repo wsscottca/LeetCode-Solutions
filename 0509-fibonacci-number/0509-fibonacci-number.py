@@ -5,13 +5,9 @@ class Solution:
         if n == 1:
             return 1
 
-        two_before = 1
-        one_before = 1
-        
-        for i in range(2,n):
-            if i % 2 == 0:
-                two_before = two_before + one_before
-            else:
-                one_before = two_before + one_before
+        last_two = (1,1)
+        for i in range(2, n):
+            curr = last_two[0] + last_two[1]
+            last_two = (curr, last_two[0])
 
-        return max(one_before, two_before)
+        return last_two[0]
