@@ -4,21 +4,17 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-def _validBST(root: Optional[TreeNode], minVal, maxVal) -> bool:
-        if root is None:
-            return True
-        
-        if not (root.val > minVal and root.val < maxVal):
-            return False
-        elif root.left is not None and root.left.val >= root.val:
-            return False
-        elif root.right is not None and root.right.val <= root.val:
-            return False
+import sys
 
-        return _validBST(root.left, minVal, root.val) and _validBST(root.right, root.val, maxVal)
+def dfs(root: Optional[TreeNode], min_val = -sys.maxsize, max_val = sys.maxsize) -> bool:
+    if root is None:
+        return True
+    
+    if min_val >= root.val or root.val >= max_val:
+        return False
+    
+    return dfs(root.left, min_val, root.val) and dfs(root.right, root.val, max_val)
 
 class Solution:
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
-        return _validBST(root, float(-inf), float(inf))
-
-    
+        return dfs(root)
