@@ -4,14 +4,20 @@ class Solution:
             return 0
         
         n = len(s)
-        dp = [0 for _ in range(n+1)]
-        dp[n] = 1
+        curr = 0
+        last = 1
+        two_prev = 0
         
         for i in reversed(range(n)):
+            curr = 0
             if s[i] != "0":
-                dp[i] = dp[i+1]
+                curr = last
                 
             if (i < n - 1) and (s[i] == "1" or s[i] == "2" and s[i + 1] <= "6"):
-                dp[i] += dp[i + 2]
+                curr += two_prev
                 
-        return dp[0]
+            two_prev = last
+            last = curr
+            
+                
+        return curr
