@@ -33,7 +33,6 @@ class RandomizedSet:
         index = self.map[val]
         last = self.list[-1]
         
-        print(val, self.count, index)
         self.list[-1] = self.list[index]
         self.list[index] = last
         self.list.pop()
