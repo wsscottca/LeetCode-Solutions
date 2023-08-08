@@ -1,19 +1,30 @@
 class Solution:
     def evalRPN(self, tokens: List[str]) -> int:
-        stack = []
+        stack = []      
+
         for token in tokens:
+            # if the token is an operator, do the operation on the last 2 values
             if token == "+":
                 stack.append(stack.pop() + stack.pop())
-            elif token == "-":
-                a, b = stack.pop(), stack.pop()
-                stack.append(b - a)
+
             elif token == "*":
                 stack.append(stack.pop() * stack.pop())
+            
+            # order matters for subtraction and division so store the last values
+            elif token == "-":
+                prev = stack.pop()
+                two_prev = stack.pop()
+
+                stack.append(two_prev - prev)
+
             elif token == "/":
-                a, b = stack.pop(), stack.pop()
-                stack.append(int(b / a))
+                prev = stack.pop()
+                two_prev = stack.pop()
+                stack.append(int(two_prev / prev))
+        
+            # otherwise add the int to the stack
             else:
                 stack.append(int(token))
-        return stack[0]
-
         
+        # result is the last item in the stack
+        return stack.pop()
