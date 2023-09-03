@@ -1,8 +1,8 @@
 '''
 Timestamps:
-    Understand & Test Cases: 3:00
+    Understand & Test Cases: 3:37
     Design & Verify: 11:45
-    Code:
+    Code: 20:45
     
 Prework
     Understand & Test Cases:
@@ -23,31 +23,7 @@ Prework
 
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
-        # initialize with empty set to build pattern
         res = [[]]
-        
-        # traverse each number
         for num in nums:
-            
-            # get the current number of sets outside our inner for loop
-            # so that it doesn't go endlessly since we add to the result list
-            curr_num_sets = len(res)
-            
-            # for each existing set add our current number to it then add it
-            # to our result list as a new set
-            for i in range(curr_num_sets):
-                
-                # if the index is an empty list/None create a list of just the new num
-                if not res[i]:
-                    new_set = [num]
-                
-                # otherwise create a copy of the set and add out new number to it
-                else:
-                    new_set = res[i].copy()
-                    new_set.append(num)
-                
-                # add the new set to the results
-                res.append(new_set)
-        
-        # return our list of sets
+            res += [curr + [num] for curr in res]
         return res
