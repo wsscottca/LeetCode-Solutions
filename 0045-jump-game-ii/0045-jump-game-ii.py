@@ -56,6 +56,10 @@ class Solution:
                     
                 # only update if the current route is less steps than the existing
                 dp[idx + i] = min(dp[idx + i], dp[idx] + 1)
+                
+                # if we reach the end we can assume it is the fastest route
+                if dp[idx + i] == len(nums) - 1:
+                    return dp[-1]
         
         # finally return our lowest number of steps to the end which is in our dp at the last spot
         return dp[-1]
