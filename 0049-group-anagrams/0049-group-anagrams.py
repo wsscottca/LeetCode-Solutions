@@ -3,17 +3,17 @@ class Solution:
         ana_dict = {}
         
         for string in strs:
-            char_list = [0 for _ in range(26)]
+            char_count = [0 for _ in range(26)]
             
             for char in string:
                 index = ord(char) - ord('a')
-                char_list[index] += 1
+                char_count[index] += 1
             
-            char_tuple = tuple(char_list)
+            char_tuple = tuple(char_count)
             if char_tuple in ana_dict:
                 ana_dict[char_tuple].append(string)
-                
-            else:
-                ana_dict[char_tuple] = [string]
-                
+                continue
+            
+            ana_dict[char_tuple] = [string]
+            
         return ana_dict.values()
